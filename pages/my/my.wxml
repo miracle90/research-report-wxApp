@@ -1,0 +1,24 @@
+<!--pages/my/my.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="recent-see">
+    <view class="icon"></view>
+    <text class="title">最近看过</text>
+  </view>
+  <view wx:for="{{records}}" wx:for-item="record" class="record-item">
+    <text class="date">{{record.date}}</text>
+    <view class="articles-wrapper">
+      <view wx:for="{{record.articles}}" wx:for-item="article" class="article-item">
+         <image class="icon" src="../../images/article.png" mode="cover"></image>
+         <text class="name">{{article.name}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+

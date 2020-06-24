@@ -1,0 +1,89 @@
+/* pages/my/my.wxss */
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+.recent-see {
+  margin-top: 26rpx;
+  padding: 0 24px;
+  width: 100%;
+}
+.recent-see .icon {
+  display: inline-block;
+  margin-right: 10rpx;
+  width: 6rpx;
+  height: 34rpx;
+  background: #0D77F2;
+  border-radius: 3rpx;
+  vertical-align: middle;
+}
+.recent-see .title {
+  display: inline-block;
+  font-family: PingFangSC-Semibold;
+  font-size: 18px;
+  color: #333333;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+
+.record-item {
+  margin-top: 32rpx;
+  width: 100%;
+}
+
+.record-item .date {
+  margin-left: 44rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #333333;
+  letter-spacing: 0;
+}
+
+.articles-wrapper {
+  margin: 18rpx;
+  padding: 0 36rpx;
+  background: #FFFFFF;
+  box-shadow: 0 2rpx 4rpx 2rpx rgba(0,0,0,0.17);
+  border-radius: 16rpx;
+}
+
+.article-item {
+  height: 108rpx;
+  line-height: 108rpx;
+  border-bottom: 2rpx solid #F0F0F0;
+}
+.article-item:last-child {
+  border-bottom: none;
+}
+
+.article-item .icon {
+  display: inline-block;
+  margin-right: 20rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.article-item .name {
+  display: inline-block;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #333333;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
