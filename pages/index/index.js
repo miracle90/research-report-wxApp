@@ -4,6 +4,44 @@ const app = getApp()
 
 Page({
   data: {
+    reportList: [
+      {
+        i: 0,
+        title: '中兴通讯（000063）公司信息更新报告：中兴通讯全球市场份额增长',
+        broker: '开源证券',
+        author: '赵良毕',
+        num: 6,
+        type: '推荐',
+        date: '06-18'
+      },
+      {
+        i: 1,
+        title: '中兴通讯（000063）公司信息更新报告：中兴通讯全球市场份额增长',
+        broker: '开源证券',
+        author: '赵良毕',
+        num: 6,
+        type: '推荐',
+        date: '06-18'
+      },
+      {
+        i: 2,
+        title: '中兴通讯（000063）公司信息更新报告：中兴通讯全球市场份额增长',
+        broker: '开源证券',
+        author: '赵良毕',
+        num: 6,
+        type: '推荐',
+        date: '06-18'
+      },
+      {
+        i: 3,
+        title: '中兴通讯（000063）公司信息更新报告：中兴通讯全球市场份额增长',
+        broker: '开源证券',
+        author: '赵良毕',
+        num: 6,
+        type: '推荐',
+        date: '06-18'
+      }
+    ],
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,

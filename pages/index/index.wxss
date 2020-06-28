@@ -1,21 +1,94 @@
 /**index.wxss**/
-.userinfo {
+.search-wrapper {
+  background: #356CFE;
+  width: 100%;
+}
+
+.input-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  margin: 16rpx 18rpx 18rpx;
+  padding: 0 0 0 22rpx;
+  height: 92rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.input-icon {
+  margin-right: 8rpx;
+  width: 32rpx;
+  height: 32rpx;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.input-wrapper input {
+  flex: 1;
+  margin-right: 18rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 15px;
 }
 
-.usermotto {
-  margin-top: 200px;
+.search-btn {
+  background: #CBE1FF;
+  height: 92rpx;
+  line-height: 92rpx;
+  width: 176rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #3074FE;
+  letter-spacing: 1.46rpx;
+  text-align: center;
+  border-radius: 0 8px 8px 0;
+}
+
+.report-wrapper {
+
+}
+
+.report-wrapper .tips {
+  padding-left: 24rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #999999;
+}
+
+.tips .num {
+  color: #297DE2;
+}
+
+.report-item {
+  margin: 0 24rpx;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #E8E8E8;
+}
+
+.report-item .title {
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #333333;
+  letter-spacing: 0.2px;
+  line-height: 56rpx;
+}
+
+.report-desc {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.left text {
+  margin-right: 20rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #297DE2;
+  letter-spacing: 0;
+}
+.right text {
+  margin-left: 56rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #666666;
+  letter-spacing: 0;
 }

@@ -1,13 +1,27 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <view class="search-wrapper">
+    <view class="input-wrapper">
+      <image class="input-icon" src="../../images/search.png" mode="cover"></image>
+      <input auto-focus placeholder="请输入关键词股票代码、公司名称" />
+      <view class="search-btn">搜索</view>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="report-wrapper">
+    <view class="tips">共有<text class="num">9999</text>条搜索结果</view>
+    <view wx:for="{{reportList}}" wx:for-item="report" wx:key="i" class="report-item">
+      <view class="title">{{ report.title }}</view>
+      <view class="report-desc">
+        <view class="left">
+          <text>{{ report.broker }}</text>
+          <text>{{ report.author }}</text>
+        </view>
+        <view class="right">
+          <text>{{ report.num }}页</text>
+          <text>{{ report.type }}</text>
+          <text>{{ report.date }}</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
