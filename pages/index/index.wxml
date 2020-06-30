@@ -3,23 +3,23 @@
   <view class="search-wrapper">
     <view class="input-wrapper">
       <image class="input-icon" src="../../images/search.png" mode="cover"></image>
-      <input auto-focus placeholder="请输入关键词股票代码、公司名称" />
-      <view class="search-btn">搜索</view>
+      <input bindinput="bindNameInput" auto-focus placeholder="请输入关键词股票代码、公司名称" />
+      <view class="search-btn" bindtap="queryReport">搜索</view>
     </view>
   </view>
   <view class="report-wrapper">
-    <view class="tips">共有<text class="num">9999</text>条搜索结果</view>
-    <view wx:for="{{reportList}}" wx:for-item="report" wx:key="i" class="report-item">
+    <view class="tips">共有<text class="num">{{ total }}</text>条搜索结果</view>
+    <view wx:for="{{ reportList }}" wx:for-item="report" wx:key="i" class="report-item">
       <view class="title">{{ report.title }}</view>
       <view class="report-desc">
         <view class="left">
-          <text>{{ report.broker }}</text>
-          <text>{{ report.author }}</text>
+          <text>{{ report.institution }}</text>
+          <text class="author">{{ report.author }}</text>
         </view>
         <view class="right">
-          <text>{{ report.num }}页</text>
-          <text>{{ report.type }}</text>
-          <text>{{ report.date }}</text>
+          <!-- <text>{{ report.page }}页</text> -->
+          <text>{{ report.category }}</text>
+          <text>{{ report.reportTime }}</text>
         </view>
       </view>
     </view>

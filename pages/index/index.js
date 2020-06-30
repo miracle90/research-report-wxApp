@@ -4,55 +4,20 @@ const app = getApp()
 
 Page({
   data: {
-    reportList: [
-      {
-        i: 0,
-        title: '中兴通讯（000063）公司信息更新报告：中兴通讯全球市场份额增长',
-        broker: '开源证券',
-        author: '赵良毕',
-        num: 6,
-        type: '推荐',
-        date: '06-18'
-      },
-      {
-        i: 1,
-        title: '中兴通讯（000063）公司信息更新报告：中兴通讯全球市场份额增长',
-        broker: '开源证券',
-        author: '赵良毕',
-        num: 6,
-        type: '推荐',
-        date: '06-18'
-      },
-      {
-        i: 2,
-        title: '中兴通讯（000063）公司信息更新报告：中兴通讯全球市场份额增长',
-        broker: '开源证券',
-        author: '赵良毕',
-        num: 6,
-        type: '推荐',
-        date: '06-18'
-      },
-      {
-        i: 3,
-        title: '中兴通讯（000063）公司信息更新报告：中兴通讯全球市场份额增长',
-        broker: '开源证券',
-        author: '赵良毕',
-        num: 6,
-        type: '推荐',
-        date: '06-18'
-      }
-    ],
-    motto: 'Hello World',
+    name: '',
+    page: 1,
+    total: 0,
+    reportList: [],
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
+  // bindViewTap: function() {
+  //   wx.navigateTo({
+  //     url: '../logs/logs'
+  //   })
+  // },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -80,6 +45,42 @@ Page({
         }
       })
     }
+  },
+  bindNameInput: function (e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+  queryReport () {
+    const { name } = this.data
+    console.log(name)
+    const self = this
+    wx.request({
+      url: 'http://4zty7s.natappfree.cc/main/report/search',
+      data: {
+        name,
+        page: 1,
+        size: 10
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        const { code, data } = res.data
+        if (code === 0) {
+          const { records: reportList, total } = data
+          reportList.forEach(item => {
+            item.reportTime = item.reportTime.slice(2, 10)
+          })
+          console.log(reportList)
+          self.setData({
+            reportList,
+            total
+          })
+        }
+      }
+    })
   },
   getUserInfo: function(e) {
     console.log(e)

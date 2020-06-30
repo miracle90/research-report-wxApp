@@ -4,7 +4,7 @@
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="nickname">{{userInfo.nickName}}</text>
       <text class="deadline">VIP到期时间：2020-11-11</text>
     </block>
@@ -13,10 +13,10 @@
     <view class="icon"></view>
     <text class="title">最近看过</text>
   </view>
-  <view wx:for="{{records}}" wx:for-item="record" class="record-item">
+  <view wx:for="{{records}}" wx:for-item="record" wx:for-index="idx" wx:key="idx" class="record-item">
     <text class="date">{{record.date}}</text>
     <view class="articles-wrapper">
-      <view wx:for="{{record.articles}}" wx:for-item="article" class="article-item">
+      <view wx:for="{{record.articles}}" wx:for-item="article" wx:for-index="i" wx:key="i" class="article-item">
          <image class="icon" src="../../images/article.png" mode="cover"></image>
          <text class="name">{{article.name}}</text>
       </view>
