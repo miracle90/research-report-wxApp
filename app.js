@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    const self = this
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -10,6 +11,25 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        const { code } = res
+        wx.request({
+          url: 'http://4zty7s.natappfree.cc/main/user/code2Session',
+          data: {
+            code
+          },
+          method: 'GET',
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            console.log(res.data)
+            const { code, openId } = res.data
+            if (code === 0) {
+              self.globalData.userInfo.openId = openId
+              console.log(self.globalData.userInfo)
+            }
+          }
+        })
       }
     })
     // 获取用户信息

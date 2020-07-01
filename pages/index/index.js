@@ -19,6 +19,7 @@ Page({
   //   })
   // },
   onLoad: function () {
+    this.queryReport()
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -46,6 +47,35 @@ Page({
       })
     }
   },
+  selectReport (e) {
+    const { url } = e.currentTarget.dataset
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.downloadFile({
+      url,
+      success: function (res) {
+        wx.hideLoading()
+        const filePath = res.tempFilePath
+        wx.openDocument({
+          filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+          },
+          fail: function (res) {
+            console.log('打开文档失败 ', res)
+          }
+        })
+      }
+    })
+  },
+  getPhoneNumber(e) {
+    // 授权or拒绝
+    console.log(e)
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+  },
   bindNameInput: function (e) {
     this.setData({
       name: e.detail.value
@@ -53,12 +83,11 @@ Page({
   },
   queryReport () {
     const { name } = this.data
-    console.log(name)
     const self = this
     wx.request({
       url: 'http://4zty7s.natappfree.cc/main/report/search',
       data: {
-        name,
+        name: '中兴',
         page: 1,
         size: 10
       },
