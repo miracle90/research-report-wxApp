@@ -8,7 +8,7 @@
     </view>
   </view>
   <view class="report-wrapper">
-    <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button> -->
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
     <view class="tips">共有<text class="num">{{ total }}</text>条搜索结果</view>
     <view
       wx:for="{{ reportList }}"

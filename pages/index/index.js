@@ -85,7 +85,7 @@ Page({
     const { name } = this.data
     const self = this
     wx.request({
-      url: 'http://4zty7s.natappfree.cc/main/report/search',
+      url: 'http://ahbahv.natappfree.cc/main/report/search',
       data: {
         name: '中兴',
         page: 1,
