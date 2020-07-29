@@ -48,7 +48,8 @@ Page({
     }
   },
   selectReport (e) {
-    const { url } = e.currentTarget.dataset
+    const { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
+    this.uploadHistory({ reportId: reportid, reportName: reportname, companyName: companyname, category })
     wx.showLoading({
       title: '加载中',
     })
@@ -69,12 +70,45 @@ Page({
       }
     })
   },
+  uploadHistory (data) {
+    wx.request({
+      url: 'http://ahbahv.natappfree.cc/main/report/insertReportHistory',
+      data: {
+        ...data,
+        userId:  app.globalData.userInfo.userId
+      },
+      method: "post",
+      success: function (res) {
+        // 
+      }
+    })
+  },
   getPhoneNumber(e) {
     // 授权or拒绝
     console.log(e)
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
+    const self = this;
+    if (e.detail.errMsg == "getPhoneNumber:ok") {
+      wx.request({
+        url: 'http://ahbahv.natappfree.cc/main/user/decodePhoneNumber',
+        data: {
+          encryptedData: e.detail.encryptedData,
+          iv: e.detail.iv
+        },
+        method: "get",
+        success: function (res) {
+          const { code, result } = res.data
+          if (code === 0) {
+            const { phoneNumber } = JSON.parse(result)
+            app.globalData.userInfo.phoneNumber = phoneNumber
+            console.log( app.globalData.userInfo)
+            self.setData({
+              userInfo:  app.globalData.userInfo,
+              hasUserInfo: true
+            })
+          }
+        }
+      })
+    }
   },
   bindNameInput: function (e) {
     this.setData({

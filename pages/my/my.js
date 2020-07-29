@@ -45,6 +45,7 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
+      this.login(app.globalData.userInfo)
     } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
@@ -66,6 +67,56 @@ Page({
         }
       })
     }
+  },
+  login (obj) {
+    const self = this
+    const { phoneNumber: mobile, openId: openid, nickName: nickname, avatarUrl: headimgurl } = obj
+    wx.request({
+      url: 'http://ahbahv.natappfree.cc/main/user/login',
+      data: {
+        mobile,
+        openid,
+        nickname,
+        headimgurl
+      },
+      method: 'post',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res.data)
+        const { code, data: { id } } = res.data
+        if (code === 0) {
+          app.globalData.userInfo.userId = id
+          self.setData({
+            userInfo: { ...app.globalData.userInfo, userId: id },
+            hasUserInfo: true
+          })
+          self.getHistoryList(id)
+        }
+      }
+    })
+  },
+  getHistoryList (userId) {
+    const self = this
+    wx.request({
+      url: 'http://ahbahv.natappfree.cc/main/report/reportHistoryList',
+      data: {
+        userId
+      },
+      method: 'post',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        const { code, data } = res.data
+        if (code === 0) {
+          self.setData({
+            records: data
+          })
+        }
+      }
+    })
   },
   getUserInfo: function (e) {
     console.log(e)

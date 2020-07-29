@@ -23,9 +23,9 @@ App({
           },
           success(res) {
             console.log(res.data)
-            const { code, openId } = res.data
+            const { code, openId, sessionKey } = res.data
             if (code === 0) {
-              self.globalData.userInfo.openId = openId
+              self.globalData.userInfo = { ...self.globalData.userInfo, openId, sessionKey }
               console.log(self.globalData.userInfo)
             }
           }

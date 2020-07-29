@@ -17,6 +17,10 @@
       class="report-item"
       bindtap="selectReport"
       data-url="{{report.url}}"
+      data-reportId="{{report.id}}"
+      data-reportName="{{report.title}}"
+      data-companyName="{{report.name}}"
+      data-category="{{report.category}}"
     >
       <view class="title">{{ report.title }}</view>
       <view class="report-desc">
