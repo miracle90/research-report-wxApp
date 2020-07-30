@@ -4,11 +4,11 @@
     <view class="input-wrapper">
       <image class="input-icon" src="../../images/search.png" mode="cover"></image>
       <input bindinput="bindNameInput" auto-focus placeholder="请输入关键词股票代码、公司名称" />
-      <view class="search-btn" bindtap="queryReport">搜索</view>
+      <view class="search-btn" bindtap="search" wx:if="{{userInfo.phoneNumber}}">搜索</view>
+      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="search-btn" wx:else>搜索</button>
     </view>
   </view>
   <view class="report-wrapper">
-    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
     <view class="tips">共有<text class="num">{{ total }}</text>条搜索结果</view>
     <view
       wx:for="{{ reportList }}"
@@ -35,5 +35,7 @@
         </view>
       </view>
     </view>
+    <view wx:if="{{loading && !noMore}}" class="loadmore loading">正在加载...</view>
+    <view wx:elif="{{!loading && noMore}}" class="loadmore">没有更多内容了</view>
   </view>
 </view>

@@ -92,6 +92,8 @@
 }
 
 .article-item {
+  display: flex;
+  align-items: center;
   height: 108rpx;
   line-height: 108rpx;
   border-bottom: 2rpx solid #F0F0F0;
@@ -101,17 +103,18 @@
 }
 
 .article-item .icon {
-  display: inline-block;
   margin-right: 20rpx;
   width: 32rpx;
   height: 32rpx;
 }
 
 .article-item .name {
-  display: inline-block;
+  flex: 1;
   font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #333333;
   letter-spacing: 0;
-  vertical-align: middle;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

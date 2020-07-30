@@ -4,8 +4,11 @@ const app = getApp()
 
 Page({
   data: {
+    loading: false,
+    noMore: false,
     name: '',
     page: 1,
+    size: 10,
     total: 0,
     reportList: [],
     userInfo: {},
@@ -19,7 +22,7 @@ Page({
   //   })
   // },
   onLoad: function () {
-    this.queryReport()
+    // this.queryReport()
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -47,6 +50,14 @@ Page({
       })
     }
   },
+  onReachBottom () {
+    if (this.data.noMore) return
+    this.setData({
+      page: this.data.page + 1
+    }, () => {
+      this.queryReport()
+    })
+  },
   selectReport (e) {
     const { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
     this.uploadHistory({ reportId: reportid, reportName: reportname, companyName: companyname, category })
@@ -72,7 +83,7 @@ Page({
   },
   uploadHistory (data) {
     wx.request({
-      url: 'http://ahbahv.natappfree.cc/main/report/insertReportHistory',
+      url: 'http://47.105.151.169:8083/main/report/insertReportHistory',
       data: {
         ...data,
         userId:  app.globalData.userInfo.userId
@@ -85,11 +96,10 @@ Page({
   },
   getPhoneNumber(e) {
     // 授权or拒绝
-    console.log(e)
     const self = this;
     if (e.detail.errMsg == "getPhoneNumber:ok") {
       wx.request({
-        url: 'http://ahbahv.natappfree.cc/main/user/decodePhoneNumber',
+        url: 'http://47.105.151.169:8083/main/user/decodePhoneNumber',
         data: {
           encryptedData: e.detail.encryptedData,
           iv: e.detail.iv
@@ -99,8 +109,8 @@ Page({
           const { code, result } = res.data
           if (code === 0) {
             const { phoneNumber } = JSON.parse(result)
+            self.search()
             app.globalData.userInfo.phoneNumber = phoneNumber
-            console.log( app.globalData.userInfo)
             self.setData({
               userInfo:  app.globalData.userInfo,
               hasUserInfo: true
@@ -115,34 +125,54 @@ Page({
       name: e.detail.value
     })
   },
+  search () {
+    this.setData({
+      noMore: false,
+      page: 1,
+      reportList: []
+    }, () => {
+      this.queryReport()
+    })
+  },
   queryReport () {
-    const { name } = this.data
+    const { name, page, size, reportList } = this.data
     const self = this
-    wx.request({
-      url: 'http://ahbahv.natappfree.cc/main/report/search',
-      data: {
-        name: '中兴',
-        page: 1,
-        size: 10
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        const { code, data } = res.data
-        if (code === 0) {
-          const { records: reportList, total } = data
-          reportList.forEach(item => {
-            item.reportTime = item.reportTime.slice(2, 10)
-          })
-          console.log(reportList)
-          self.setData({
-            reportList,
-            total
-          })
+    this.setData({
+      loading: true
+    }, () => {
+      wx.request({
+        url: 'http://47.105.151.169:8083/main/report/search',
+        data: {
+          name,
+          page,
+          size
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          const { code, data } = res.data
+          if (code === 0) {
+            const { records, total } = data
+            records.forEach(item => {
+              item.reportTime = item.reportTime.slice(2, 10)
+            })
+            if (!records || !records.length) {
+              self.setData({
+                noMore: true,
+                loading: false
+              })
+            } else {
+              self.setData({
+                reportList: [...reportList, ...records],
+                total,
+                loading: false
+              })
+            }
+          }
         }
-      }
+      })
     })
   },
   getUserInfo: function(e) {

@@ -13,12 +13,12 @@
     <view class="icon"></view>
     <text class="title">最近看过</text>
   </view>
-  <view wx:for="{{records}}" wx:for-item="record" wx:for-index="idx" wx:key="idx" class="record-item">
+  <view wx:if="{{records && records.length}}" wx:for="{{records}}" wx:for-item="record" wx:for-index="idx" wx:key="idx" class="record-item">
     <text class="date">{{record.date}}</text>
     <view class="articles-wrapper">
       <view wx:for="{{record.articles}}" wx:for-item="article" wx:for-index="i" wx:key="i" class="article-item">
          <image class="icon" src="../../images/article.png" mode="cover"></image>
-         <text class="name">{{article.name}}</text>
+         <text class="name">{{article}}</text>
       </view>
     </view>
   </view>
