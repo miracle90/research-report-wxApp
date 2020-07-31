@@ -5,30 +5,29 @@ const app = getApp()
 Page({
   data: {
     records: [
-      {
-        date: '今天',
-        articles: [
-          {
-            name: '宏观点评：5月经济修复如何？'
-          },
-          {
-            name: 'T+0：海外经验与显示'
-          }
-        ]
-      },
-      {
-        date: '2020年06月24日',
-        articles: [
-          {
-            name: '宏观点评：5月经济修复如何？'
-          },
-          {
-            name: 'T+0：海外经验与显示'
-          }
-        ]
-      }
+      // {
+      //   date: '今天',
+      //   articles: [
+      //     {
+      //       name: '宏观点评：5月经济修复如何？'
+      //     },
+      //     {
+      //       name: 'T+0：海外经验与显示'
+      //     }
+      //   ]
+      // },
+      // {
+      //   date: '2020年06月24日',
+      //   articles: [
+      //     {
+      //       name: '宏观点评：5月经济修复如何？'
+      //     },
+      //     {
+      //       name: 'T+0：海外经验与显示'
+      //     }
+      //   ]
+      // }
     ],
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -72,7 +71,7 @@ Page({
     const self = this
     const { phoneNumber: mobile, openId: openid, nickName: nickname, avatarUrl: headimgurl } = obj
     wx.request({
-      url: 'http://ahbahv.natappfree.cc/main/user/login',
+      url: 'https://www.yoohan.top/main/user/login',
       data: {
         mobile,
         openid,
@@ -99,8 +98,9 @@ Page({
   },
   getHistoryList (userId) {
     const self = this
+    const { records } = this.data
     wx.request({
-      url: 'http://ahbahv.natappfree.cc/main/report/reportHistoryList',
+      url: 'https://www.yoohan.top/main/report/reportHistoryList',
       data: {
         userId
       },
@@ -111,8 +111,22 @@ Page({
       success(res) {
         const { code, data } = res.data
         if (code === 0) {
+          data.forEach(item => {
+            const date = item.createDate.slice(0, 10)
+            const index = records.findIndex(record => record.date === date)
+            console.log(index)
+            if (index > -1) {
+              records[index].articles.push(item.reportName)
+            } else {
+              records.push({
+                date,
+                articles: [item.reportName]
+              })
+            }
+          })
+          console.log(records)
           self.setData({
-            records: data
+            records
           })
         }
       }

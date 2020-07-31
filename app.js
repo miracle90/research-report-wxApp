@@ -13,7 +13,7 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         const { code } = res
         wx.request({
-          url: 'http://ahbahv.natappfree.cc/main/user/code2Session',
+          url: 'https://www.yoohan.top/main/user/code2Session',
           data: {
             code
           },
