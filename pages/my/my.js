@@ -71,7 +71,7 @@ Page({
     const self = this
     const { phoneNumber: mobile, openId: openid, nickName: nickname, avatarUrl: headimgurl } = obj
     wx.request({
-      url: 'http://47.105.151.169:8083/main/user/login',
+      url: 'https://www.yoohan.top/main/user/login',
       data: {
         mobile,
         openid,
@@ -100,7 +100,7 @@ Page({
     const self = this
     const { records } = this.data
     wx.request({
-      url: 'http://47.105.151.169:8083/main/report/reportHistoryList',
+      url: 'https://www.yoohan.top/main/report/reportHistoryList',
       data: {
         userId
       },

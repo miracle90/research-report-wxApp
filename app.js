@@ -13,7 +13,7 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         const { code } = res
         wx.request({
-          url: 'http://47.105.151.169:8083/main/user/code2Session',
+          url: 'https://www.yoohan.top/main/user/code2Session',
           data: {
             code
           },

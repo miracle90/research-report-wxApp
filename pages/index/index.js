@@ -83,7 +83,7 @@ Page({
   },
   uploadHistory (data) {
     wx.request({
-      url: 'http://47.105.151.169:8083/main/report/insertReportHistory',
+      url: 'https://www.yoohan.top/main/report/insertReportHistory',
       data: {
         ...data,
         userId:  app.globalData.userInfo.userId
@@ -99,7 +99,7 @@ Page({
     const self = this;
     if (e.detail.errMsg == "getPhoneNumber:ok") {
       wx.request({
-        url: 'http://47.105.151.169:8083/main/user/decodePhoneNumber',
+        url: 'https://www.yoohan.top/main/user/decodePhoneNumber',
         data: {
           encryptedData: e.detail.encryptedData,
           iv: e.detail.iv
@@ -141,7 +141,7 @@ Page({
       loading: true
     }, () => {
       wx.request({
-        url: 'http://47.105.151.169:8083/main/report/search',
+        url: 'https://www.yoohan.top/main/report/search',
         data: {
           name,
           page,
