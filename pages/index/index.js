@@ -67,7 +67,7 @@ Page({
       title: '加载中',
     })
     wx.downloadFile({
-      url,
+      url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://'),
       success: function (res) {
         wx.hideLoading()
         const filePath = res.tempFilePath
