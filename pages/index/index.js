@@ -1,4 +1,6 @@
 //index.js
+import { baseUrl } from '../../utils/config.js'
+
 //获取应用实例
 const app = getApp()
 
@@ -83,7 +85,7 @@ Page({
   },
   uploadHistory (data) {
     wx.request({
-      url: 'https://www.yoohan.top/main/report/insertReportHistory',
+      url: `${baseUrl}/main/report/insertReportHistory`,
       data: {
         ...data,
         userId:  app.globalData.userInfo.userId
@@ -99,8 +101,9 @@ Page({
     const self = this;
     if (e.detail.errMsg == "getPhoneNumber:ok") {
       wx.request({
-        url: 'https://www.yoohan.top/main/user/decodePhoneNumber',
+        url: `${baseUrl}/main/user/decodePhoneNumber`,
         data: {
+          openId: app.globalData.userInfo.openId,
           encryptedData: e.detail.encryptedData,
           iv: e.detail.iv
         },
@@ -141,7 +144,7 @@ Page({
       loading: true
     }, () => {
       wx.request({
-        url: 'https://www.yoohan.top/main/report/search',
+        url: `${baseUrl}/main/report/search`,
         data: {
           name,
           page,
@@ -176,7 +179,6 @@ Page({
     })
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

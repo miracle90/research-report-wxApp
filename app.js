@@ -1,4 +1,6 @@
 //app.js
+import { baseUrl } from './utils/config.js'
+
 App({
   onLaunch: function () {
     const self = this
@@ -7,13 +9,17 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    wx.showLoading({
+      title: '加载中',
+    })
+
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         const { code } = res
         wx.request({
-          url: 'https://www.yoohan.top/main/user/code2Session',
+          url: `${baseUrl}/main/user/code2Session`,
           data: {
             code
           },
@@ -22,11 +28,10 @@ App({
             'content-type': 'application/json' // 默认值
           },
           success(res) {
-            console.log(res.data)
+            wx.hideLoading()
             const { code, openId, sessionKey } = res.data
             if (code === 0) {
               self.globalData.userInfo = { ...self.globalData.userInfo, openId, sessionKey }
-              console.log(self.globalData.userInfo)
             }
           }
         })
@@ -36,6 +41,7 @@ App({
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
+          console.log('已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框')
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
