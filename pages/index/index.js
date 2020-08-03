@@ -23,27 +23,34 @@ Page({
   //     url: '../logs/logs'
   //   })
   // },
-  onLoad: function () {
-    // this.queryReport()
-    if (app.globalData.userInfo) {
+  onLoad () {},
+  onShow () {
+    // console.log('index show', app.globalData.userInfo)
+    let userInfo = wx.getStorageSync('u')
+    if (userInfo) {
+      console.log('index 1')
       this.setData({
-        userInfo: app.globalData.userInfo,
+        userInfo,
         hasUserInfo: true
       })
     } else if (this.data.canIUse){
+      console.log('index 2')
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
+        console.log(res)
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
       }
     } else {
+      console.log('index 3')
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
+          wx.setStorageSync('u', res.userInfo)
+          // app.globalData.userInfo = res.userInfo
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
@@ -53,6 +60,7 @@ Page({
     }
   },
   onReachBottom () {
+    // 上滑加载
     if (this.data.noMore) return
     this.setData({
       page: this.data.page + 1
@@ -84,11 +92,13 @@ Page({
     })
   },
   uploadHistory (data) {
+    // 上传历史记录
+    let userInfo = wx.getStorageSync('u') || {}
     wx.request({
       url: `${baseUrl}/main/report/insertReportHistory`,
       data: {
         ...data,
-        userId:  app.globalData.userInfo.userId
+        userId:  userInfo.userId
       },
       method: "post",
       success: function (res) {
@@ -97,13 +107,14 @@ Page({
     })
   },
   getPhoneNumber(e) {
+    let userInfo = wx.getStorageSync('u') || {}
     // 授权or拒绝
     const self = this;
     if (e.detail.errMsg == "getPhoneNumber:ok") {
       wx.request({
         url: `${baseUrl}/main/user/decodePhoneNumber`,
         data: {
-          openId: app.globalData.userInfo.openId,
+          openId: userInfo.openId,
           encryptedData: e.detail.encryptedData,
           iv: e.detail.iv
         },
@@ -113,9 +124,10 @@ Page({
           if (code === 0) {
             const { phoneNumber } = JSON.parse(result)
             self.search()
-            app.globalData.userInfo.phoneNumber = phoneNumber
+            userInfo.phoneNumber = phoneNumber
+            wx.setStorageSync('u', userInfo)
             self.setData({
-              userInfo:  app.globalData.userInfo,
+              userInfo: userInfo,
               hasUserInfo: true
             })
           }
@@ -179,9 +191,10 @@ Page({
     })
   },
   getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
+    wx.setStorageSync('u', { ...this.data.userInfo, ...e.detail.userInfo })
+    // app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      userInfo: e.detail.userInfo,
+      userInfo: { ...this.data.userInfo, ...e.detail.userInfo },
       hasUserInfo: true
     })
   }
