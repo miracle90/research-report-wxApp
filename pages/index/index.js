@@ -71,7 +71,13 @@ Page({
   },
   selectReport (e) {
     const { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
-    this.uploadHistory({ reportId: reportid, reportName: reportname, companyName: companyname, category })
+    this.uploadHistory({
+      reportId: reportid,
+      reportName: reportname,
+      companyName: companyname,
+      category,
+      url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')
+    })
     wx.showLoading({
       title: '加载中',
     })
