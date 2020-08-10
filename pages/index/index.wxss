@@ -47,9 +47,39 @@ button {
   width: 176rpx !important;
 }
 
-.report-wrapper {
-
+.hot-wrapper {
+  /* display: flex; */
+  margin: 13rpx 42rpx 0;
 }
+
+.hot-wrapper .hot-icon {
+  display: inline-block;
+  width: 28rpx;
+  height: 38rpx;
+}
+.hot-wrapper .name {
+  display: inline-block;
+  margin-left: 15rpx;
+  margin-right: 45rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+.hot-wrapper .label {
+  display: inline-block;
+  margin: 0 20rpx 32rpx 0;
+  padding: 0 10rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 13px;
+  color: #FFFFFF;
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  border-radius: 4rpx;
+}
+/* .report-wrapper {
+ 
+} */
 
 .report-wrapper .tips {
   padding-left: 24rpx;
@@ -103,7 +133,7 @@ button {
 }
 .right text {
   display: inline-block;
-  margin-left: 56rpx;
+  margin-left: 28rpx;
   font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #666666;

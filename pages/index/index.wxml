@@ -7,6 +7,18 @@
       <view class="search-btn" bindtap="search" wx:if="{{userInfo.phoneNumber}}">搜索</view>
       <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="search-btn" wx:else>搜索</button>
     </view>
+    <view class="hot-wrapper">
+      <image class="hot-icon" src="../../images/hot.png"></image>
+      <text class="name">热搜</text>
+      <text
+        class="label"
+        wx:for="{{ hotList }}"
+        wx:for-item="item"
+        wx:key="item"
+        bindtap="queryHot"
+        data-label="{{ item }}"
+      >{{ item }}</text>
+    </view>
   </view>
   <view class="report-wrapper">
     <view class="tips">共有<text class="num">{{ total }}</text>条搜索结果</view>
@@ -29,7 +41,7 @@
           <text class="author">{{ report.author }}</text>
         </view>
         <view class="right">
-          <!-- <text>{{ report.page }}页</text> -->
+          <text>{{ report.page }}页</text>
           <text>{{ report.category }}</text>
           <text>{{ report.reportTime }}</text>
         </view>

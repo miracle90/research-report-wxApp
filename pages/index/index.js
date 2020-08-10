@@ -13,6 +13,7 @@ Page({
     size: 10,
     total: 0,
     reportList: [],
+    hotList: ['消费', '半导体', '军工', '券商', '医药', '贵州茅台', '君正集团', '光启技术'],
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -140,6 +141,18 @@ Page({
       name: e.detail.value
     })
   },
+  queryHot (e) {
+    const { label } = e.target.dataset
+    console.log(label)
+    this.setData({
+      name: label,
+      noMore: false,
+      page: 1,
+      reportList: []
+    }, () => {
+      this.queryReport()
+    })
+  },
   search () {
     this.setData({
       noMore: false,
@@ -171,7 +184,7 @@ Page({
           if (code === 0) {
             const { records, total } = data
             records.forEach(item => {
-              item.reportTime = item.reportTime.slice(2, 10)
+              item.reportTime = item.reportTime.slice(5, 10)
             })
             if (!records || !records.length) {
               self.setData({
