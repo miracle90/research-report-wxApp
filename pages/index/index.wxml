@@ -42,7 +42,7 @@
         </view>
         <view class="right">
           <text>{{ report.page }}页</text>
-          <text>{{ report.category }}</text>
+          <text>{{ report.name || report.category || '其他研报' }}</text>
           <text>{{ report.reportTime }}</text>
         </view>
       </view>
