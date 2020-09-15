@@ -21,16 +21,21 @@
     </view>
   </view>
   <view class="category-wrapper">
-    <view class="category-item" bindtap="go">
+    <view class="category-item" bindtap="goFeatured">
       <image src="../../images/category/featured.png"></image>
       <view class="name">精选研报</view>
       <view class="ename">Featured</view>
     </view>
-    <view class="category-item" bindtap="go">
+    <view class="category-item" bindtap="goCalc">
+      <image src="../../images/category/calculator.png"></image>
+      <view class="name">市值计算器</view>
+      <view class="ename">Calculate</view>
+    </view>
+    <!-- <view class="category-item" bindtap="go">
       <image src="../../images/category/lastest.png"></image>
       <view class="name">最新研报</view>
       <view class="ename">Up to date</view>
-    </view>
+    </view> -->
     <view class="category-item" bindtap="go">
       <image src="../../images/category/wealth.png"></image>
       <view class="name">新财富视角</view>
@@ -38,7 +43,7 @@
     </view>
     <view class="category-item" bindtap="go">
       <image src="../../images/category/wind.png"></image>
-      <view class="name">机构风向全圈</view>
+      <view class="name">机构风向圈</view>
       <view class="ename">Wind vane</view>
     </view>
     <view class="category-item" bindtap="go">
@@ -61,13 +66,8 @@
       <view class="name">席位追踪</view>
       <view class="ename">Seat</view>
     </view>
-    <view class="category-item" bindtap="goCalc">
-      <image src="../../images/category/calculator.png"></image>
-      <view class="name">市值计算器</view>
-      <view class="ename">Calculate</view>
-    </view>
   </view>
-  <!-- <view class="report-wrapper">
+  <view class="report-wrapper">
     <view class="tips">共有<text class="num">{{ total }}</text>条搜索结果</view>
     <view
       wx:for="{{ reportList }}"
@@ -96,5 +96,5 @@
     </view>
     <view wx:if="{{loading && !noMore}}" class="loadmore loading">正在加载...</view>
     <view wx:elif="{{!loading && noMore}}" class="loadmore">没有更多内容了</view>
-  </view> -->
+  </view>
 </view>

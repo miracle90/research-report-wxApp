@@ -1,0 +1,30 @@
+  <view class="report-wrapper">
+    <view class="tips">共有<text class="num">{{ total }}</text>条搜索结果</view>
+    <view
+      wx:for="{{ reportList }}"
+      wx:for-item="report"
+      wx:key="i"
+      class="report-item"
+      bindtap="selectReport"
+      data-url="{{report.url}}"
+      data-reportId="{{report.id}}"
+      data-reportName="{{report.title}}"
+      data-companyName="{{report.name}}"
+      data-category="{{report.category}}"
+    >
+      <view class="title">{{ report.title }}</view>
+      <view class="report-desc">
+        <view class="left">
+          <text>{{ report.institution }}</text>
+          <text class="author">{{ report.author }}</text>
+        </view>
+        <view class="right">
+          <text>{{ report.page }}页</text>
+          <text>{{ report.name || report.category || '其他研报' }}</text>
+          <text>{{ report.reportTime }}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{loading && !noMore}}" class="loadmore loading">正在加载...</view>
+    <view wx:elif="{{!loading && noMore}}" class="loadmore">没有更多内容了</view>
+  </view>

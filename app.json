@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/report/report",
     "pages/index/index",
     "pages/calculator/calculator",
     "pages/my/my"
