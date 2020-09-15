@@ -69,6 +69,18 @@ Page({
       this.queryReport()
     })
   },
+  go () {
+    wx.showToast({
+      title: '功能开发中，敬请期待~',
+      icon: 'none',
+      duration: 2000
+    })
+  },
+  goCalc () {
+    wx.navigateTo({
+      url: '../calculator/calculator'
+    })
+  },
   selectReport (e) {
     const { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
     this.uploadHistory({

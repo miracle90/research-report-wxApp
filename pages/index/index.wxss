@@ -77,6 +77,45 @@ button {
   border: 2rpx solid rgba(255, 255, 255, 0.3);
   border-radius: 4rpx;
 }
+
+.category-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+}
+
+.category-item {
+  position: relative;
+  margin-bottom: 20rpx;
+  padding-top: 8rpx;
+  padding-left: 38rpx;
+  width: 332rpx;
+  height: 106rpx;
+  box-sizing: border-box;
+}
+
+.category-item .name {
+  font-family: SourceHanSansCN-Bold;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+.category-item .ename {
+  opacity: 0.2;
+  font-family: SourceHanSansCN-Regular;
+  font-size: 12px;
+  color: #FFFFFF;
+}
+
+.category-item image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
 /* .report-wrapper {
  
 } */

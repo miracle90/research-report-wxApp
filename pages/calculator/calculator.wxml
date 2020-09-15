@@ -1,0 +1,51 @@
+<view class="page">
+  <view class="form-wrap">
+    <view class="form-item">
+      <text class="label">最新一期年报净利润</text>
+      <input placeholder="请输入" bindinput="bindA" />
+      <text class="unit">亿元</text>
+    </view>
+    <view class="form-item">
+      <text class="label">未来三年净利润复合增速</text>
+      <input placeholder="请输入" bindinput="bindB" />
+      <text class="unit">%</text>
+    </view>
+    <view class="form-item">
+      <text class="label">净利润永续增速</text>
+      <input placeholder="请输入" bindinput="bindC" />
+      <text class="unit">%</text>
+    </view>
+    <view class="form-item">
+      <text class="label">总股本</text>
+      <input placeholder="请输入" bindinput="bindD" />
+      <text class="unit">亿股</text>
+    </view>
+  </view>
+  <!-- <view class="tips">注：当前无风险收益率={{ E }} 信用利差={{ F }}</view> -->
+  <view class="introduction" bindtap="introduction">
+    <text>计算器功能解析</text>
+    <image src="../../images/arrow.png"></image>
+  </view>
+  <view class="calc-btn" bindtap="calc">开始计算</view>
+  <view class="result-wrap">
+    <text>合理市值：{{ marketValue ? marketValue : '--' }}</text>
+    <text>合理股价：{{ marketPrice ? marketPrice : '--' }}</text>
+  </view>
+  <view class="introduction-dialog" wx:if="{{ showDialog }}">
+    <view class="content-wrap">
+       <image class="close" src="../../images/close.png" bindtap="close"></image>
+        <view class="title">
+          <image src="../../images/left.png"></image>
+          <text>计算器解析功能</text>
+          <image src="../../images/right.png"></image>
+        </view>
+        <view class="desc">
+          <view>1、最新一期年报净利润：指上一年的年度财务报表净利润。如果已经到了下半年，可以采用当年的预测净利润。</view>
+          <view>2、未来三年净利润复合增速：假设2019年净利润为5亿，2022年的预测净利润为10亿，则复合增速为：³√￣(10÷5)-1=0.2599。预测净利润可以从个股研报里获取。</view>
+          <view>3、净利润永续增速：根据行业景气度酌情选取，通常可采用行业整体增速×30%。行业整体增速可以从行业研报里获取。</view>
+          <view>4、估值与无风险收益率和信用利差挂钩，故不同时期的计算结果可能略有偏差。</view>
+          <view>5、本估值模型仅适用于竞争格局稳定、业绩容易预测的企业。周期股、辣鸡股、题材股不适用！周期股、辣鸡股、题材股不适用！周期股、辣鸡股、题材股不适用！</view>
+        </view>
+    </view>
+  </view>
+</view>
