@@ -12,14 +12,14 @@
       data-companyName="{{report.name}}"
       data-category="{{report.category}}"
     >
-      <view class="title">{{ report.title }}</view>
+      <view class="title">{{ report.title }}（{{ report.page }}页）</view>
       <view class="report-desc">
         <view class="left">
           <text>{{ report.institution }}</text>
           <text class="author">{{ report.author }}</text>
         </view>
         <view class="right">
-          <text>{{ report.page }}页</text>
+          <!-- <text>{{ report.page }}页</text> -->
           <text>{{ report.name || report.category || '其他研报' }}</text>
           <text>{{ report.reportTime }}</text>
         </view>

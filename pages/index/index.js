@@ -207,7 +207,7 @@ Page({
           if (code === 0) {
             const { records, total } = data
             records.forEach(item => {
-              item.reportTime = item.reportTime.slice(5, 10)
+              item.reportTime = item.reportTime.slice(0, 10)
             })
             if (!records || !records.length) {
               self.setData({

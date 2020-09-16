@@ -75,7 +75,11 @@ Page({
 
   },
   query () {
-    const { page, size, name } = this.data
+    const { page, size, name, reportList } = this.data
+    const self = this
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: `${baseUrl}/main/report/selectionReportList`,
       data: {
@@ -85,7 +89,26 @@ Page({
       },
       method: "post",
       success: function (res) {
-        // 
+        wx.hideLoading()
+        const { code, data } = res.data
+        if (code === 0) {
+          const { records, total } = data
+          records.forEach(item => {
+            item.reportTime = item.reportTime.slice(0, 10)
+          })
+          if (!records || !records.length) {
+            self.setData({
+              noMore: true,
+              loading: false
+            })
+          } else {
+            self.setData({
+              reportList: [...reportList, ...records],
+              total,
+              loading: false
+            })
+          }
+        }
       }
     })
   }
