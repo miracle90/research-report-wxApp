@@ -31,12 +31,12 @@
       <view class="name">市值计算器</view>
       <view class="ename">Calculate</view>
     </view>
-    <!-- <view class="category-item" bindtap="go">
+    <view class="category-item" bindtap="go">
       <image src="../../images/category/lastest.png"></image>
       <view class="name">最新研报</view>
       <view class="ename">Up to date</view>
-    </view> -->
-    <view class="category-item" bindtap="go">
+    </view>
+    <!-- <view class="category-item" bindtap="go">
       <image src="../../images/category/wealth.png"></image>
       <view class="name">新财富视角</view>
       <view class="ename">Wealth</view>
@@ -54,7 +54,6 @@
     <view class="category-item" bindtap="go">
       <image src="../../images/category/momentum.png"></image>
       <view class="name">动量追踪</view>
-      <!-- <view class="ename">Momentum</view> -->
     </view>
     <view class="category-item" bindtap="go">
       <image src="../../images/category/hongkong.png"></image>
@@ -65,7 +64,7 @@
       <image src="../../images/category/seat.png"></image>
       <view class="name">席位追踪</view>
       <view class="ename">Seat</view>
-    </view>
+    </view> -->
   </view>
   <view class="report-wrapper">
     <view class="tips">共有<text class="num">{{ total }}</text>条搜索结果</view>
