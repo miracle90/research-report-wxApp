@@ -1,0 +1,12 @@
+<view class="category-wrapper">
+  <view
+    wx:for="{{ categoryList }}"
+    wx:for-item="category"
+    wx:key="index"
+    class="category-item"
+    data-category="{{category}}"
+    bindtap="queryCategory"
+  >
+    {{ category }}
+  </view>
+</view>

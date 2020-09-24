@@ -31,17 +31,17 @@
       <view class="name">市值计算器</view>
       <view class="ename">Calculate</view>
     </view>
-    <view class="category-item" bindtap="go">
+    <!-- <view class="category-item" bindtap="go">
       <image src="../../images/category/lastest.png"></image>
       <view class="name">最新研报</view>
       <view class="ename">Up to date</view>
-    </view>
-    <!-- <view class="category-item" bindtap="go">
+    </view> -->
+    <view class="category-item" bindtap="goWealth">
       <image src="../../images/category/wealth.png"></image>
       <view class="name">新财富视角</view>
       <view class="ename">Wealth</view>
     </view>
-    <view class="category-item" bindtap="go">
+    <!-- <view class="category-item" bindtap="go">
       <image src="../../images/category/wind.png"></image>
       <view class="name">机构风向圈</view>
       <view class="ename">Wind vane</view>

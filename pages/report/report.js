@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    category: '',
     loading: false,
     noMore: false,
     name: '',
@@ -23,7 +24,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.query()
+    const { wealth } = options
+    this.setData({
+      category: wealth || ''
+    }, () => {
+      this.queryReport()
+    })
   },
 
   /**
@@ -65,7 +71,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    // 上滑加载
+    if (this.data.noMore) return
+    this.setData({
+      page: this.data.page + 1
+    }, () => {
+      this.queryReport()
+    })
   },
 
   /**
@@ -74,7 +86,61 @@ Page({
   onShareAppMessage: function () {
 
   },
-  query () {
+  queryReport () {
+    const { category } = this.data
+    this.setData({
+      loading: true
+    }, () => {
+      // 如果是新财富研报
+      if (category) {
+        wx.setNavigationBarTitle({
+          title: '新财富视角'
+        })
+        this.queryWealthReport(category)
+      } else {
+        this.queryFeaturedReport()
+      }
+    })
+  },
+  queryWealthReport(category) {
+    const { page, size, reportList } = this.data
+    const self = this
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: `${baseUrl}/main/new-wealth/getReportOfWealth`,
+      data: {
+        page,
+        size,
+        category
+      },
+      method: "post",
+      success: function (res) {
+        wx.hideLoading()
+        const { code, data } = res.data
+        if (code === 0) {
+          const { records, total } = data
+          records.forEach(item => {
+            item.reportTime = item.reportTime.slice(0, 10)
+          })
+          if (!records || !records.length) {
+            self.setData({
+              noMore: true,
+              loading: false
+            })
+          } else {
+            self.setData({
+              reportList: [...reportList, ...records],
+              total,
+              loading: false
+            })
+          }
+        }
+      }
+    })
+  },
+  queryFeaturedReport () {
     const { page, size, name, reportList } = this.data
     const self = this
     wx.showLoading({

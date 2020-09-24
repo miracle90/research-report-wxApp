@@ -1,0 +1,19 @@
+.category-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  justify-content: space-between;
+  padding: 20rpx;
+}
+
+.category-item {
+  margin-bottom: 30rpx;
+  flex: 0 0 48%;
+  height: 70rpx;
+  line-height: 70rpx;
+  background: #eee;
+  text-align: center;
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #333333;
+}

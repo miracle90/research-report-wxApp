@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/wealth/wealth",
     "pages/report/report",
     "pages/calculator/calculator",
     "pages/my/my"

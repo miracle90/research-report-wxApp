@@ -86,6 +86,11 @@ Page({
       url: '../calculator/calculator'
     })
   },
+  goWealth () {
+    wx.navigateTo({
+      url: '../wealth/wealth'
+    })
+  },
   selectReport (e) {
     const { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
     this.uploadHistory({
