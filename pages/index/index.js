@@ -24,7 +24,10 @@ Page({
   //     url: '../logs/logs'
   //   })
   // },
-  onLoad () {},
+  onLoad () {
+    // 获取关键字
+    this.queryKeys()
+  },
   onShow () {
     // console.log('index show', app.globalData.userInfo)
     let userInfo = wx.getStorageSync('u')
@@ -67,6 +70,21 @@ Page({
       page: this.data.page + 1
     }, () => {
       this.queryReport()
+    })
+  },
+  queryKeys() {
+    wx.request({
+      url: `${baseUrl}/main/keyword/get`,
+      data: {},
+      method: "get",
+      success: res => {
+        const { code, data } = res.data
+        if (code === 0) {
+          this.setData({
+            hotList: data
+          })
+        }
+      }
     })
   },
   go() {
@@ -171,7 +189,6 @@ Page({
   },
   queryHot (e) {
     const { label } = e.target.dataset
-    console.log(label)
     this.setData({
       name: label,
       noMore: false,

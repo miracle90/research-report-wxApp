@@ -86,6 +86,50 @@ Page({
   onShareAppMessage: function () {
 
   },
+  selectReport(e) {
+    const { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
+    this.uploadHistory({
+      reportId: reportid,
+      reportName: reportname,
+      companyName: companyname,
+      category,
+      url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')
+    })
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.downloadFile({
+      url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://'),
+      success: function (res) {
+        wx.hideLoading()
+        const filePath = res.tempFilePath
+        wx.openDocument({
+          filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+          },
+          fail: function (res) {
+            console.log('打开文档失败 ', res)
+          }
+        })
+      }
+    })
+  },
+  uploadHistory(data) {
+    // 上传历史记录
+    let userInfo = wx.getStorageSync('u') || {}
+    wx.request({
+      url: `${baseUrl}/main/report/insertReportHistory`,
+      data: {
+        ...data,
+        userId: userInfo.userId
+      },
+      method: "post",
+      success: function (res) {
+        // 
+      }
+    })
+  },
   queryReport () {
     const { category } = this.data
     this.setData({

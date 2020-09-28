@@ -14,10 +14,10 @@
         class="label"
         wx:for="{{ hotList }}"
         wx:for-item="item"
-        wx:key="item"
+        wx:key="idx"
         bindtap="queryHot"
-        data-label="{{ item }}"
-      >{{ item }}</text>
+        data-label="{{ item.word }}"
+      >{{ item.word }}</text>
     </view>
   </view>
   <view class="category-wrapper">
