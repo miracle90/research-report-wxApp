@@ -72,6 +72,18 @@ Page({
       this.queryReport()
     })
   },
+  /**
+   * 用户点击右上角发送给朋友
+   */
+  onShareAppMessage: function (res) {
+    console.log(res)
+  },
+  /**
+   * 用户点击右上角分享到朋友圈
+   */
+  onShareTimeline: function (res) {
+    console.log(res)
+  },
   queryKeys() {
     wx.request({
       url: `${baseUrl}/main/keyword/get`,
@@ -111,6 +123,7 @@ Page({
   },
   selectReport (e) {
     const { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
+    // 上传历史记录
     this.uploadHistory({
       reportId: reportid,
       reportName: reportname,
@@ -118,6 +131,10 @@ Page({
       category,
       url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')
     })
+    wx.navigateTo({
+      url: `../web/web?url=${url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')}`
+    })
+    return
     wx.showLoading({
       title: '加载中',
     })

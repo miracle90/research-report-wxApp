@@ -1,20 +1,21 @@
-// pages/wealth/wealth.js
-import { baseUrl } from '../../utils/config.js'
-
+// pages/web/web.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    categoryList: []
+    url: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.queryWealthCategory()
+    const { url } = options
+    this.setData({
+      url
+    })
   },
 
   /**
@@ -64,34 +65,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  /**
-   * 用户点击右上角分享到朋友圈
-   */
-  onShareTimeline: function (res) {
-    console.log(res)
-  },
-  queryCategory (e) {
-    const { category } = e.currentTarget.dataset
-    wx.navigateTo({
-      url: `../report/report?wealth=${category}`
-    })
-  },
-  queryWealthCategory() {
-    // 上传历史记录
-    wx.request({
-      url: `${baseUrl}/main/new-wealth/getCategoryOfWealth`,
-      data: {},
-      method: "get",
-      success: res => {
-        console.log(res.data)
-        const { code, data } = res.data
-        if (code === 0) {
-          this.setData({
-            categoryList: data
-          })
-        }
-      }
-    })
-  },
+  }
 })
