@@ -4,7 +4,8 @@
     "pages/wealth/wealth",
     "pages/report/report",
     "pages/calculator/calculator",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/web/web"
   ],
   "tabBar": {
     "backgroundColor": "#f9f9f9",

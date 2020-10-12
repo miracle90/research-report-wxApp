@@ -77,6 +77,12 @@ Page({
   onShareAppMessage: function () {
 
   },
+  /**
+   * 用户点击右上角分享到朋友圈
+   */
+  onShareTimeline: function (res) {
+    console.log(res)
+  },
   introduction () {
     this.setData({
       showDialog: true
