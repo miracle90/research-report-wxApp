@@ -131,10 +131,10 @@ Page({
       category,
       url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')
     })
-    wx.navigateTo({
-      url: `../web/web?url=${url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')}`
-    })
-    return
+    // wx.navigateTo({
+    //   url: `../web/web?url=${url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')}`
+    // })
+    // return
     wx.showLoading({
       title: '加载中',
     })
