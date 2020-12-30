@@ -101,6 +101,10 @@ Page({
       category,
       url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')
     })
+    wx.navigateTo({
+      url: `../detail/detail?id=${reportid}&reportname=${reportname}`
+    })
+    return
     wx.showLoading({
       title: '加载中',
     })

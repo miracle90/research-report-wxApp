@@ -5,7 +5,8 @@
     "pages/report/report",
     "pages/calculator/calculator",
     "pages/my/my",
-    "pages/web/web"
+    "pages/web/web",
+    "pages/detail/detail"
   ],
   "tabBar": {
     "backgroundColor": "#f9f9f9",
