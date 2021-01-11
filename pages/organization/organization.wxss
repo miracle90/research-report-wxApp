@@ -45,10 +45,9 @@
   display: inline-block;
   font-family: PingFangSC-Regular;
   font-size: 14px;
-  color: #297DE2;
   letter-spacing: 0;
   vertical-align: middle;
-  width: 70px;
+  /* width: 70px; */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

@@ -1,5 +1,5 @@
   <view class="report-wrapper">
-    <view class="tips">共有<text class="num">{{ total }}</text>条搜索结果</view>
+    <!-- <view class="tips">共有<text class="num">{{ total }}</text>条搜索结果</view> -->
     <view
       wx:for="{{ reportList }}"
       wx:for-item="report"

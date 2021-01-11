@@ -12,9 +12,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let { url } = options
+    let { title, url } = options
     url = decodeURIComponent(url)
-    console.log(url)
+    title = decodeURIComponent(title)
+    wx.setNavigationBarTitle({
+      title: title
+    })
     this.setData({
       url
     })

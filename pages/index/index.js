@@ -121,6 +121,11 @@ Page({
       url: '../wealth/wealth'
     })
   },
+  goOrg() {
+    wx.navigateTo({
+      url: '../organization/organization'
+    })
+  },
   selectReport (e) {
     const { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
     // 上传历史记录

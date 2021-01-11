@@ -41,12 +41,12 @@
       <view class="name">新财富视角</view>
       <view class="ename">Wealth</view>
     </view>
-    <!-- <view class="category-item" bindtap="go">
-      <image src="../../images/category/wind.png"></image>
+    <view class="category-item" bindtap="goOrg">
+      <image src="../../images/category/expected.png"></image>
       <view class="name">机构风向圈</view>
       <view class="ename">Wind vane</view>
     </view>
-    <view class="category-item" bindtap="go">
+    <!-- <view class="category-item" bindtap="go">
       <image src="../../images/category/expected.png"></image>
       <view class="name">预期追踪</view>
       <view class="ename">Expected</view>
@@ -67,7 +67,7 @@
     </view> -->
   </view>
   <view class="report-wrapper">
-    <view class="tips">共有<text class="num">{{ total }}</text>条搜索结果</view>
+    <!-- <view class="tips">共有<text class="num">{{ total }}</text>条搜索结果</view> -->
     <view
       wx:for="{{ reportList }}"
       wx:for-item="report"
