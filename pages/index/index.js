@@ -131,10 +131,11 @@ Page({
       category,
       url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')
     })
-    // wx.navigateTo({
-    //   url: `../web/web?url=${url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')}`
-    // })
-    // return
+    const webviewUrl = url.replace('http://hengyi-report.oss-cn-qingdao.aliyuncs.com', 'https://www.yoohan.top/pdf')
+    wx.navigateTo({
+      url: `../web/web?url=${encodeURIComponent(webviewUrl)}`
+    })
+    return
     wx.showLoading({
       title: '加载中',
     })

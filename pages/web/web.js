@@ -12,7 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { url } = options
+    let { url } = options
+    url = decodeURIComponent(url)
+    console.log(url)
     this.setData({
       url
     })
