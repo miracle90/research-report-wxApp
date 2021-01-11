@@ -1,0 +1,11 @@
+<view class="detail-wrapper">
+  <image
+    wx:for="{{ imgList }}"
+    wx:for-item="item"
+    wx:key="i"
+    class="img-item"
+    src="{{ item.url }}"
+  >
+    <!-- <image src="{{ item.url }}"></image> -->
+  </image>
+</view>

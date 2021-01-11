@@ -1,0 +1,10 @@
+/* pages/detail/detail.wxss */
+.img-item {
+  
+}
+
+.img-item {
+  margin-bottom: 10rpx;
+  width: 100%;
+  height: 1060rpx;
+}

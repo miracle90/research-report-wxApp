@@ -148,6 +148,13 @@ button {
   line-height: 56rpx;
 }
 
+.new-wealth {
+  border: 2px solid red;
+  border-radius: 5px;
+  font-size: 12px;
+  color: red;
+}
+
 .report-desc {
   display: flex;
   justify-content: space-between;

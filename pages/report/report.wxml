@@ -12,7 +12,7 @@
       data-companyName="{{report.name}}"
       data-category="{{report.category}}"
     >
-      <view class="title">{{ report.title }}（{{ report.page }}页）</view>
+      <view class="title">{{ report.title }}（{{ report.page }}页）<text class="new-wealth" wx:if="{{ report.isNewWealth }}">新财富</text></view>
       <view class="report-desc">
         <view class="left">
           <text>{{ report.institution }}</text>

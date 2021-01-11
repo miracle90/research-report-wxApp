@@ -131,14 +131,18 @@ Page({
       category,
       url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')
     })
-    const webviewUrl = url.replace('http://hengyi-report.oss-cn-qingdao.aliyuncs.com', 'https://www.yoohan.top/pdf')
     wx.navigateTo({
-      url: `../web/web?url=${encodeURIComponent(webviewUrl)}`
+      url: `../detail/detail?id=${reportid}&reportname=${reportname}`
     })
     return
-    wx.showLoading({
-      title: '加载中',
-    })
+    // const webviewUrl = url.replace('http://hengyi-report.oss-cn-qingdao.aliyuncs.com', 'https://www.yoohan.top/pdf')
+    // wx.navigateTo({
+    //   url: `../web/web?url=${encodeURIComponent(webviewUrl)}`
+    // })
+    // return
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
     wx.downloadFile({
       url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://'),
       success: function (res) {
