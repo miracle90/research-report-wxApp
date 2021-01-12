@@ -43,7 +43,7 @@
     </view>
     <view class="category-item" bindtap="goOrg">
       <image src="../../images/category/expected.png"></image>
-      <view class="name">机构风向圈</view>
+      <view class="name">机构风向标</view>
       <view class="ename">Wind vane</view>
     </view>
     <!-- <view class="category-item" bindtap="go">
