@@ -76,21 +76,27 @@ Page({
   },
 
   /**
-   * 用户点击右上角分享
+   * 用户点击右上角发送给朋友
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    return {
+      title: '机构风向标'
+    }
   },
   /**
    * 用户点击右上角分享到朋友圈
    */
   onShareTimeline: function (res) {
-    console.log(res)
+    return {
+      title: '机构风向标'
+    }
   },
+ 
   selectReport(e) {
     const { title, url } = e.currentTarget.dataset
     wx.navigateTo({
-      url: `../web/web?title=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`
+      url: `../web/web?title=${title}&url=${url}`
+      // url: `../web/web?title=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`
     })
   },
   queryArticle () {
