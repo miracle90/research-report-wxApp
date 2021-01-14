@@ -17,22 +17,24 @@ Page({
    */
   onLoad: async function (options) {
     let { id, reportname, url } = options
-    
     this.setData({
       title: decodeURIComponent(reportname)
     })
     wx.setNavigationBarTitle({
       title: decodeURIComponent(reportname)
     })
-    const data = await this.queryReportDetail(id)
-    console.log('queryReportDetail ', data)
-    if (data) {
+    const res = await this.queryReportDetail(id)
+    if (res && res.code === 0) {
       this.setData({
-        imgList: data
+        imgList: res.data
       })
-    } else {
+    } else if (res && res.code === 1) {
+      let url = res.url
+      wx.showLoading({
+        title: 'PDF下载中~',
+      })
       wx.downloadFile({
-        url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://'),
+        url,
         success: function (res) {
           wx.hideLoading()
           const filePath = res.tempFilePath
@@ -65,7 +67,9 @@ Page({
           wx.hideLoading()
           const { code, data } = res.data
           if (code === 0) {
-            resolve(data)
+            resolve({ code: 0, data })
+          } else if (code === 1) {
+            resolve({ code: 1, url: data.url })
           } else {
             resolve()
           }
