@@ -15,37 +15,74 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    let { id, reportname } = options
-    this.queryReportDetail(id)
+  onLoad: async function (options) {
+    let { id, reportname, url } = options
+    
     this.setData({
       title: decodeURIComponent(reportname)
     })
     wx.setNavigationBarTitle({
       title: decodeURIComponent(reportname)
     })
+    const data = await this.queryReportDetail(id)
+    console.log('queryReportDetail ', data)
+    if (data) {
+      this.setData({
+        imgList: data
+      })
+    } else {
+      wx.downloadFile({
+        url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://'),
+        success: function (res) {
+          wx.hideLoading()
+          const filePath = res.tempFilePath
+          wx.openDocument({
+            filePath,
+            success: function (res) {
+              console.log('打开文档成功')
+            },
+            fail: function (res) {
+              console.log('打开文档失败 ', res)
+            }
+          })
+        }
+      })
+    }
   },
 
   queryReportDetail(reportId) {
-    wx.showLoading({
-      title: '加载中',
-    })
-    wx.request({
-      url: `${baseUrl}/main/report/doReportToImage`,
-      data: {
-        reportId
-      },
-      method: "get",
-      success: res => {
-        wx.hideLoading()
-        const { code, data } = res.data
-        if (code === 0) {
-          console.log(data)
-          this.setData({
-            imgList: data
-          })
+    return new Promise((resolve, reject) => {
+      wx.showLoading({
+        title: '加载中',
+      })
+      wx.request({
+        url: `${baseUrl}/main/report/doReportToImage`,
+        data: {
+          reportId
+        },
+        method: "get",
+        success: res => {
+          wx.hideLoading()
+          const { code, data } = res.data
+          if (code === 0) {
+            resolve(data)
+          } else {
+            resolve()
+          }
+        },
+        fail: () => {
+          wx.hideLoading()
+          resolve()
         }
-      }
+      })
+    })
+  },
+
+  preview(event) {
+    let currentUrl = event.currentTarget.dataset.src
+    wx.previewImage({
+      current: currentUrl, // 当前显示图片的http链接
+      urls: this.data.imgList.map(item => item.url) // 需要预览的图片http链接列表
     })
   },
 

@@ -111,7 +111,7 @@ Page({
     // e + f = 0.07
     // g =［a * (1 + b) ³*（8.5 + 2 * c）］/（1+e+f）³
     // h = g / d
-    let marketValue = (a * (1 + b / 100) * (1 + b / 100) * (1 + b / 100) * (8.5 + 2 * c)) / ((1 + 0.07) * (1 + 0.07) * (1 + 0.07))
+    let marketValue = (a * (1 + b / 100) * (1 + b / 100) * (1 + b / 100) * (8.5 + 2 * c)) / ((1 + 0.0688) * (1 + 0.0688) * (1 + 0.0688))
     console.log(marketValue)
     marketValue = Math.floor(marketValue)
     console.log(marketValue)

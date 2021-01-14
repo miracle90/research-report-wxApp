@@ -5,6 +5,8 @@
     wx:key="i"
     class="img-item"
     src="{{ item.url }}"
+    data-src="{{ item.url }}"
+    bindtap="preview"
   >
     <!-- <image src="{{ item.url }}"></image> -->
   </image>

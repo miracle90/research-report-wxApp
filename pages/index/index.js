@@ -127,17 +127,18 @@ Page({
     })
   },
   selectReport (e) {
-    const { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
+    let { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
+    url = url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')
     // 上传历史记录
     this.uploadHistory({
       reportId: reportid,
       reportName: reportname,
       companyName: companyname,
       category,
-      url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')
+      url
     })
     wx.navigateTo({
-      url: `../detail/detail?id=${reportid}&reportname=${reportname}`
+      url: `../detail/detail?id=${reportid}&reportname=${reportname}&url=${url}`
     })
     return
     // const webviewUrl = url.replace('http://hengyi-report.oss-cn-qingdao.aliyuncs.com', 'https://www.yoohan.top/pdf')

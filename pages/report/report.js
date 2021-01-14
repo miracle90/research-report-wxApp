@@ -93,16 +93,17 @@ Page({
     console.log(res)
   },
   selectReport(e) {
-    const { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
+    let { url, reportid, reportname, companyname, category } = e.currentTarget.dataset
+    url = url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')
     this.uploadHistory({
       reportId: reportid,
       reportName: reportname,
       companyName: companyname,
       category,
-      url: url.indexOf('https') === 0 ? url : url.replace('http://', 'https://')
+      url
     })
     wx.navigateTo({
-      url: `../detail/detail?id=${reportid}&reportname=${reportname}`
+      url: `../detail/detail?id=${reportid}&reportname=${reportname}&url=${url}`
     })
     return
     wx.showLoading({
