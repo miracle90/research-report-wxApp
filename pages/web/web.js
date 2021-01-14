@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    title: '',
     url: ''
   },
 
@@ -16,9 +17,10 @@ Page({
     url = decodeURIComponent(url)
     title = decodeURIComponent(title)
     wx.setNavigationBarTitle({
-      title: title
+      title
     })
     this.setData({
+      title,
       url
     })
   },
@@ -68,7 +70,18 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    return {
+      title: this.data.title
+    }
+  },
+  /**
+   * 用户点击右上角分享到朋友圈
+   * 使用 web-view 组件的页面[pages/web/web]不支持分享到朋友圈
+   */
+  onShareTimeline: function (res) {
+    return {
+      title: this.data.title
+    }
   }
 })
